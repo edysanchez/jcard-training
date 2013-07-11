@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<project name="Jcard-training" default="main" basedir=".">
+    <property name="src.dir" location="src" />
+    <property name="build.dir" location="bin" />
+    <property name="lib.dir" location="lib"/>
+    <path id="build.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+    <target name="clean" >
+        <delete dir="${build.dir}" />
+    </target>
+    <target name="makedir">
+        <mkdir dir="${build.dir}"/>
+    </target>
+    <target name="compile" depends="clean, makedir">
+        <javac srcdir="${src.dir}" destdir="${build.dir}">
+        </javac>
+    </target>
+    <target name="jar" depends="compile">
+        <jar destfile="JcardTraining.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="test.Main" />
+            </manifest>
+        </jar>
+        </target>
+    <target name="main" depends="compile, jar">
+        <description> Main target </description>
+    </target>
+</project>
